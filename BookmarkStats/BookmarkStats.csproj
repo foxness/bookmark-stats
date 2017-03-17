@@ -49,6 +49,7 @@
     <Compile Include="BookmarkBase.cs" />
     <Compile Include="BookmarkFolder.cs" />
     <Compile Include="BookmarkParser.cs" />
+    <Compile Include="BookmarkStats.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
