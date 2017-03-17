@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ChromeBookmarks
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private const string PATH = @"C:\Users\foxneSs\Desktop\Bookmarks";
+
+        public static void Main(string[] args)
         {
+            var bookmarks = BookmarkParser.Parse(File.ReadAllText(PATH));
+
+            Console.ReadKey();
         }
     }
 }
