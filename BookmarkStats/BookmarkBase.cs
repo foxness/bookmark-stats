@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChromeBookmarks
+namespace BookmarkStats
 {
     public abstract class BookmarkBase
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ChromeBookmarks
+namespace BookmarkStats
 {
     public class Program
     {
