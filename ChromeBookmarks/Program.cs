@@ -5,11 +5,10 @@ namespace ChromeBookmarks
 {
     public class Program
     {
-        private const string PATH = @"C:\Users\foxneSs\Desktop\Bookmarks";
-
         public static void Main(string[] args)
         {
-            var bookmarks = BookmarkParser.Parse(File.ReadAllText(PATH));
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Google\Chrome\User Data\Default\Bookmarks");
+            var bookmarks = BookmarkParser.Parse(File.ReadAllText(path));
 
             Console.ReadKey();
         }
