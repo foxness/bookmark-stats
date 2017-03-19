@@ -36,7 +36,7 @@ namespace BookmarkStats
             var last = ordered.Last().DateAdded;
             contents += $"The first bookmark was added at {first}\n";
             contents += $"The last bookmark was added at {last}\n";
-            contents += $"Time span in between the these dates: {Readable(last - first)}\n";
+            contents += $"Time span inbetween these dates: {Readable(last - first)}\n";
 
             return contents;
         }
@@ -47,8 +47,12 @@ namespace BookmarkStats
 
             var websites = new Dictionary<string, int>();
             int nonWebsiteCount = 0;
+            int namelessCount = 0;
             foreach (var bookmark in bookmarks)
             {
+                if (bookmark.Name == "")
+                    namelessCount++;
+
                 var match = websiteRegex.Match(bookmark.Url);
                 if (match.Success)
                 {
@@ -62,13 +66,15 @@ namespace BookmarkStats
                     nonWebsiteCount++;
             }
 
-            contents += $"Non-website bookmark count: {nonWebsiteCount}\n\n";
+            contents += $"Total bookmark count: {bookmarks.Count}\n";
+            contents += $"Non-website bookmark count: {nonWebsiteCount} ({nonWebsiteCount / (double)bookmarks.Count:P3})\n";
+            contents += $"Nameless bookmark count: {namelessCount} ({namelessCount / (double)bookmarks.Count:P3})\n\n";
 
             contents += $"Top {TOP_COUNT} most bookmarked websites:\n\n";
 
             var orderedWebsites = websites.OrderByDescending(pair => pair.Value).Take(TOP_COUNT).ToList();
             for (int i = 0; i < orderedWebsites.Count; ++i)
-                contents += $"{i + 1}. {orderedWebsites[i].Key} : {orderedWebsites[i].Value} hits\n";
+                contents += $"{i + 1}. {orderedWebsites[i].Key} : {orderedWebsites[i].Value} hits ({orderedWebsites[i].Value / (double)bookmarks.Count:P3})\n";
 
             return contents + "\n";
         }
